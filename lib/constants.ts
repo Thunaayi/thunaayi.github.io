@@ -190,14 +190,6 @@ export const HOME_TILES: TileDefinition[] = [
     order: 8,
   },
   {
-    key: "linkedin",
-    title: "LinkedIn",
-    description: "Connect",
-    size: "medium",
-    href: "https://www.linkedin.com/",
-    order: 9,
-  },
-  {
     key: "sandbox",
     title: "Sandbox",
     description: "Experiments",

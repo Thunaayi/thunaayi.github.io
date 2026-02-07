@@ -188,12 +188,14 @@ body {
 }
 
 .route-section__rail {
-  display: none;
-  gap: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
   opacity: 0.88;
   font-size: 0.78rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
+  margin-bottom: 2rem;
 }
 
 .route-section__rail[data-empty="true"] {
@@ -201,10 +203,12 @@ body {
 }
 
 @media (min-width: 960px) {
-  .route-section__rail[data-empty="false"] {
+  .route-section__rail {
     display: grid;
     position: sticky;
     top: clamp(6rem, 10vw, 8rem);
+    margin-bottom: 0;
+    gap: 1.5rem;
   }
 }
 
@@ -370,7 +374,7 @@ body {
 }
 
 .route-grid--projects {
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
 .route-grid--skills {
@@ -500,6 +504,7 @@ body {
   justify-content: space-between;
   gap: 1rem;
   align-items: baseline;
+  flex-wrap: wrap;
 }
 
 .route-card__meta {
