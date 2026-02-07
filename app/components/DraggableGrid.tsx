@@ -254,7 +254,10 @@ function Tile({
   return article;
 }
 
-export function DraggableGrid() {
+const MOBILE_BATCH_SIZE = 24;
+const SCROLL_THRESHOLD = 300;
+
+function DraggableGrid() {
   const { theme } = useTheme();
   const themedTiles = useTiles();
   const [instances, setInstances] = useState<ResolvedTile[]>([]);
@@ -263,6 +266,7 @@ export function DraggableGrid() {
   const parallaxFrameRef = useRef<number | null>(null);
   const parallaxValuesRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const [parallaxEnabled, setParallaxEnabled] = useState<boolean>(true);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     return () => {
@@ -278,26 +282,69 @@ export function DraggableGrid() {
       return;
     }
 
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const mobileQuery = window.matchMedia("(max-width: 768px)");
 
-    const applyPreference = (matches: boolean) => {
+    const applyPreference = () => {
       window.requestAnimationFrame(() => {
-        setParallaxEnabled(!matches);
+        setParallaxEnabled(!motionQuery.matches && !mobileQuery.matches);
+        setIsMobile(mobileQuery.matches);
       });
     };
 
-    applyPreference(mediaQuery.matches);
+    applyPreference();
 
-    const handleChange = (event: MediaQueryListEvent) => {
-      applyPreference(event.matches);
-    };
+    const handleChange = () => applyPreference();
 
-    mediaQuery.addEventListener("change", handleChange);
+    motionQuery.addEventListener("change", handleChange);
+    mobileQuery.addEventListener("change", handleChange);
 
     return () => {
-      mediaQuery.removeEventListener("change", handleChange);
+      motionQuery.removeEventListener("change", handleChange);
+      mobileQuery.removeEventListener("change", handleChange);
     };
   }, []);
+
+  // Infinite Scroll Logic for Mobile
+  useEffect(() => {
+    if (!isMobile || !isReady) return;
+
+    const handleScroll = () => {
+      if (
+        window.innerHeight + window.scrollY >=
+        document.body.offsetHeight - SCROLL_THRESHOLD
+      ) {
+        appendMobileTiles();
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isMobile, isReady, themedTiles]); // themedTiles dependency to access current tiles
+
+  const appendMobileTiles = useCallback(() => {
+    setInstances((current) => {
+      if (current.length > 200) return current; // Cap to prevent memory issues
+      const timestamp = Date.now();
+      const newTiles: ResolvedTile[] = [];
+
+      for (let i = 0; i < MOBILE_BATCH_SIZE; i++) {
+        const key = randomItem(TILE_KEYS);
+        // Mobile prefers smaller tiles, fewer large ones
+        const size: TileSize = Math.random() > 0.85 ? "wide" : "medium";
+        const baseTile = themedTiles.find(t => t.key === key);
+        if (!baseTile) continue;
+
+        newTiles.push({
+          instanceId: `${key}-${timestamp}-append-${i}-${Math.random().toString(36).slice(2, 6)}`,
+          baseKey: key,
+          tile: { ...baseTile, size },
+          size,
+        });
+      }
+      return [...current, ...newTiles];
+    });
+  }, [themedTiles]);
 
   useEffect(() => {
     if (typeof window === "undefined" || themedTiles.length === 0) {
@@ -305,10 +352,42 @@ export function DraggableGrid() {
     }
 
     const baseMap = new Map<TileKey, TileData>(themedTiles.map((tile) => [tile.key, tile]));
-    const generated = createTileInstances();
-    const resolved: ResolvedTile[] = [];
+    const width = typeof window !== "undefined" ? window.innerWidth : 1280;
+    const height = typeof window !== "undefined" ? window.innerHeight : 720;
 
-    for (const instance of generated) {
+    // Initial Generation
+    const isSmallScreen = width < 768;
+    // Force more initial tiles on mobile to ensure scrollability immediately
+    const total = isSmallScreen ? 40 : estimateInstanceCount(width, height);
+
+    // Re-implement createTileInstances logic inline or call modified version
+    // For simplicity, adapting logic here:
+    const timestamp = Date.now();
+    const generated: TileInstance[] = [];
+
+    // Ensure coverage first (at least one of each)
+    TILE_KEYS.forEach((key, index) => {
+      generated.push({
+        id: `${key}-${timestamp}-base-${index}`,
+        key,
+        size: isSmallScreen ? (Math.random() > 0.8 ? "wide" : "medium") : randomItem(TILE_SIZES),
+      });
+    });
+
+    // Fill the rest
+    for (let index = generated.length; index < total; index += 1) {
+      const key = randomItem(TILE_KEYS);
+      generated.push({
+        id: `${key}-${timestamp}-extra-${index}-${Math.random().toString(36).slice(2, 6)}`,
+        key,
+        size: isSmallScreen ? (Math.random() > 0.8 ? "wide" : "medium") : randomItem(TILE_SIZES),
+      });
+    }
+
+    const shuffled = shuffle(generated);
+
+    const resolved: ResolvedTile[] = [];
+    for (const instance of shuffled) {
       const baseTile = baseMap.get(instance.key);
       if (!baseTile) continue;
       const tileWithSize =
@@ -405,7 +484,10 @@ export function DraggableGrid() {
         onPointerLeave={handleGridPointerLeave}
       >
         <div
-          className="grid min-h-full grid-flow-row-dense grid-cols-2 auto-rows-[120px] sm:auto-rows-[140px] gap-1.5 sm:grid-cols-[repeat(auto-fill,minmax(160px,1fr))] sm:gap-2 transition-transform duration-500 ease-out will-change-transform"
+          className={cn(
+            "grid min-h-full grid-flow-row-dense auto-rows-[140px] gap-1 sm:gap-1 lg:gap-2 transition-transform duration-500 ease-out will-change-transform",
+            "grid-cols-[repeat(auto-fill,minmax(140px,1fr))] md:grid-cols-[repeat(auto-fill,minmax(160px,1fr))]"
+          )}
           style={gridTransformStyle}
         >
           {placeholderTiles.map((tile) => {
@@ -444,7 +526,10 @@ export function DraggableGrid() {
       onPointerLeave={handleGridPointerLeave}
     >
       <div
-        className="grid min-h-full grid-flow-row-dense grid-cols-2 auto-rows-[120px] sm:auto-rows-[140px] gap-1.5 sm:grid-cols-[repeat(auto-fill,minmax(160px,1fr))] sm:gap-2 transition-transform duration-300 ease-out will-change-transform"
+        className={cn(
+          "grid min-h-full grid-flow-row-dense auto-rows-[140px] gap-1 sm:gap-1 lg:gap-2 transition-transform duration-300 ease-out will-change-transform",
+          "grid-cols-[repeat(auto-fill,minmax(140px,1fr))] md:grid-cols-[repeat(auto-fill,minmax(160px,1fr))]"
+        )}
         style={gridTransformStyle}
       >
         {instances.map((tile) => (

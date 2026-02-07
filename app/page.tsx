@@ -6,7 +6,7 @@ const DraggableGrid = dynamic(() => import("./components/DraggableGrid"));
 
 export default function Home() {
   return (
-    <div className="relative flex h-screen w-screen overflow-hidden text-(--metro-foreground)">
+    <div className="relative flex h-screen w-screen flex-col overflow-y-auto overflow-x-hidden text-(--metro-foreground) md:overflow-hidden">
       <TileFlyoverProvider>
         <a
           href="#tile-grid"
@@ -15,7 +15,7 @@ export default function Home() {
           Skip to tiles
         </a>
         <div
-          className="relative flex flex-1 overflow-hidden"
+          className="relative flex flex-1 flex-col overflow-visible md:overflow-hidden"
           role="main"
           aria-describedby="home-navigation-instructions"
         >
@@ -27,11 +27,11 @@ export default function Home() {
             <DraggableGrid />
           </div>
 
-          <div className="pointer-events-none absolute left-0 top-6 z-20 flex w-full max-w-4xl px-8 sm:left-1/2 sm:top-8 sm:-translate-x-1/2 sm:justify-center sm:px-12">
+          <div className="pointer-events-none absolute left-1/2 top-8 z-20 flex w-full max-w-4xl -translate-x-1/2 justify-center px-6 sm:px-12">
             <Header
               title="Aimal Asim"
               eyebrow="Full Stack & UI Dev"
-              description="Explore my work by clicking on any of the interactive tiles below."
+              description="Welcome to my digital garden. Explore my work by clicking on any of the interactive tiles below."
               className="pointer-events-auto w-full"
             />
           </div>
