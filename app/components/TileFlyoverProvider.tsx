@@ -100,6 +100,21 @@ export function TileFlyoverProvider({ children }: PropsWithChildren) {
     applyTileColor(null);
   }, [applyTileColor, clearNavigation]);
 
+  useEffect(() => {
+    const handlePageShow = (event: PageTransitionEvent) => {
+      if (event.persisted) {
+        setIsNavigating(false);
+        setActiveTile(null);
+        applyTileColor(null);
+      }
+    };
+
+    window.addEventListener("pageshow", handlePageShow);
+    return () => {
+      window.removeEventListener("pageshow", handlePageShow);
+    };
+  }, [applyTileColor]);
+
   useEffect(() => clearNavigation, [clearNavigation]);
 
   const value = useMemo<TileFlyoverContextValue>(
@@ -155,11 +170,11 @@ function TileFlyoverOverlay({ tile, onClose }: TileFlyoverOverlayProps) {
     window.addEventListener("keydown", handler);
     return () => {
       window.removeEventListener("keydown", handler);
-       const lastActive = lastActiveElementRef.current;
-       if (lastActive) {
-         lastActive.focus();
-         lastActiveElementRef.current = null;
-       }
+      const lastActive = lastActiveElementRef.current;
+      if (lastActive) {
+        lastActive.focus();
+        lastActiveElementRef.current = null;
+      }
       document.body.style.overflow = previousOverflow;
     };
   }, [tile, onClose]);
