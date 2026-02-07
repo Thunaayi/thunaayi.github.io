@@ -32,7 +32,6 @@ export default function Home() {
               title="Aimal Asim"
               eyebrow="Full Stack & UI Dev"
               description="Welcome to my digital garden. Explore my work by clicking on any of the interactive tiles below."
-              tip="Tip: Use the tiles as navigation. Tab to a tile and press Enter to open that section."
               className="pointer-events-auto w-full"
             />
           </div>
