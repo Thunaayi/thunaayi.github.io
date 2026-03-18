@@ -31,11 +31,12 @@ const DESCRIPTION_COLOR = {
 } as const;
 
 const TILE_KEYS = HOME_TILES.map((tile) => tile.key) as TileKey[];
-const TILE_SIZES: TileSize[] = ["medium", "wide", "large"];
+const TILE_SIZES: TileSize[] = ["medium", "wide", "large", "hero"];
 const TILE_SPANS: Record<TileSize, { cols: number; rows: number }> = {
   medium: { cols: 1, rows: 1 },
   wide: { cols: 2, rows: 1 },
   large: { cols: 2, rows: 2 },
+  hero: { cols: 4, rows: 2 },
 };
 
 const MAX_ESTIMATED_INSTANCES = 48;
@@ -123,11 +124,22 @@ function Tile({
   const supportsPointerGlow =
     isGlassTheme || theme.name === "neon" || theme.name === "orchid" || theme.name === "pastel" || theme.name === "metro";
 
-  const tileRectRef = useRef<DOMRect | null>(null);
-
   const textClass = TEXT_COLOR[tile.tile.contrast];
   const descriptionClass = DESCRIPTION_COLOR[tile.tile.contrast];
   const iconClass = tile.tile.contrast === "light" ? TEXT_COLOR.light : TEXT_COLOR.dark;
+
+  const [altContent, setAltContent] = useState(false);
+  useEffect(() => {
+    const minDelay = 4000;
+    const maxDelay = 20000;
+    const intervalTime = minDelay + Math.random() * (maxDelay - minDelay);
+    
+    const interval = setInterval(() => {
+      setAltContent((prev) => !prev);
+    }, intervalTime);
+    
+    return () => clearInterval(interval);
+  }, []);
 
   const handleClick = (event: ReactMouseEvent) => {
     event.preventDefault();
@@ -152,17 +164,12 @@ function Tile({
     style["--hover-y"] = "50%";
   }
 
-  const handlePointerEnter = supportsPointerGlow
-    ? (event: React.PointerEvent<HTMLElement>) => {
-      tileRectRef.current = event.currentTarget.getBoundingClientRect();
-    }
-    : undefined;
+  const handlePointerEnter = undefined;
 
   const handlePointerMove = supportsPointerGlow
     ? (event: React.PointerEvent<HTMLElement>) => {
       const target = event.currentTarget;
-      const rect = tileRectRef.current ?? target.getBoundingClientRect();
-      tileRectRef.current = rect;
+      const rect = target.getBoundingClientRect();
       const x = rect.width ? ((event.clientX - rect.left) / rect.width) * 100 : 50;
       const y = rect.height ? ((event.clientY - rect.top) / rect.height) * 100 : 50;
       target.style.setProperty("--hover-x", `${x}%`);
@@ -181,7 +188,6 @@ function Tile({
       target.style.setProperty("--hover-y", "50%");
       target.style.setProperty("--hover-shift-x", "0");
       target.style.setProperty("--hover-shift-y", "0");
-      tileRectRef.current = null;
     }
     : undefined;
 
@@ -190,12 +196,12 @@ function Tile({
     <motion.article
       style={style}
       className={cn(
-        "relative flex h-full overflow-hidden text-left transition-transform duration-150 cursor-pointer focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-[--metro-foreground]",
+        "group relative flex h-full overflow-hidden text-left transition-transform duration-150 cursor-pointer focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-[--metro-foreground]",
         isGlassTheme
           ? "rounded-[14px] border bg-white/5 px-3 py-3"
           : "rounded-[2px] border border-transparent px-3 py-3 shadow-none",
         TILE_THEME_CLASSES[theme.name],
-        `col-span-${spans.cols} row-span-${spans.rows}`,
+        tileSizeClasses[tile.tile.size],
       )}
       data-theme-ripple-item
       initial={{ opacity: 0, scale: 0.9 }}
@@ -212,6 +218,8 @@ function Tile({
         iconClassName={iconClass}
         titleClassName={`${titleClasses[tile.tile.size]} ${textClass}`}
         descriptionColorClass={descriptionClass}
+        isDynamicActive={altContent}
+        textClass={textClass}
       />
       {isExternal ? (
         <span
@@ -497,7 +505,7 @@ function DraggableGrid() {
                 key={tile.key}
                 className={cn(
                   "relative flex h-full overflow-hidden px-3 py-3",
-                  `col-span-${spans.cols} row-span-${spans.rows}`,
+                  tileSizeClasses[tile.size],
                   isGlassTheme
                     ? "rounded-[14px] border border-white/15 bg-white/6 backdrop-blur-md"
                     : "rounded-[2px] border border-transparent bg-(--metro-chrome)/60 animate-pulse",
@@ -554,7 +562,9 @@ function TileSurface({
   iconClassName,
   titleClassName,
   descriptionColorClass,
-}: TileSurfaceProps) {
+  isDynamicActive,
+  textClass,
+}: TileSurfaceProps & { isDynamicActive?: boolean; textClass?: string }) {
   const { theme } = useTheme();
   const isRetro = theme.name === "retro";
 
@@ -578,21 +588,36 @@ function TileSurface({
     descriptionStyle.lineHeight = "1.4";
   }
 
+  const dynamicTitleClass = {
+    medium: isRetro ? "text-[8px]" : "text-sm",
+    wide: isRetro ? "text-[10px]" : "text-base",
+    large: isRetro ? "text-[12px]" : "text-lg",
+    hero: isRetro ? "text-[16px]" : "text-2xl",
+  }[tile.size];
+
+  const dynamicDescClass = {
+    medium: isRetro ? "text-[6px]" : "text-[10px]",
+    wide: isRetro ? "text-[8px]" : "text-xs",
+    large: isRetro ? "text-[10px]" : "text-sm",
+    hero: isRetro ? "text-[12px]" : "text-base",
+  }[tile.size];
+
   return (
     <>
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className={cn("absolute inset-0 flex items-center justify-center transition-opacity duration-300", isDynamicActive ? "opacity-0 scale-95" : "opacity-100 scale-100")}>
         <MetroIcon name={tile.icon} className={cn("h-16 w-16", iconClassName)} />
       </div>
-      <div className={cn("absolute bottom-3 left-3", isRetro ? "space-y-1" : "space-y-0.5")}
-      >
-        <h2 className={cn(titleClassName)} style={titleStyle}>
-          {tile.title}
-        </h2>
-        {tile.description ? (
-          <p className={cn(descriptionClasses[tile.size], descriptionColorClass)} style={descriptionStyle}>
+      <div className={cn("absolute inset-0 flex flex-col items-center text-center justify-center p-4 transition-all duration-300 tracking-wider", isDynamicActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none")}>
+        {tile.description && (
+          <p className={cn("font-bold mb-3 leading-snug tracking-wider", textClass, dynamicTitleClass)}>
             {tile.description}
           </p>
-        ) : null}
+        )}
+        {tile.href && (
+          <p className={cn("uppercase font-semibold tracking-[0.5em] opacity-80", textClass, dynamicDescClass)}>
+            {tile.href.replace(/^https?:\/\//, '').split('/')[0]}
+          </p>
+        )}
       </div>
     </>
   );

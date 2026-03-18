@@ -6,6 +6,7 @@ import { useMemo, type CSSProperties, type ReactNode } from "react";
 import { useTheme } from "@/app/components/ThemeProvider";
 import type { TileKey } from "@/lib/theme";
 import { MetroIcon } from "./MetroIcon";
+import { ThemeSwitcher } from "./ThemeSwitcher";
 
 export type SectionLayoutProps = {
   title: string;
@@ -94,20 +95,28 @@ export function SectionLayout({ title, description, kicker, aside, children, til
           {aside ? <div className="route-section__rail-content">{aside}</div> : null}
         </div>
         <div className="route-section__main">
-          <header className="route-section__header">
-            <div className="route-section__title-row">
-              {routeIcon ? (
-                <span className="route-section__title-icon" aria-hidden="true">
-                  <MetroIcon name={routeIcon} className="h-6 w-6" />
-                </span>
-              ) : null}
-              <h1 className="route-section__title">{title}</h1>
+          <header className="route-section__header flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
+            <div className="flex-1 space-y-4">
+              <div className="route-section__title-row">
+                {routeIcon ? (
+                  <span className="route-section__title-icon" aria-hidden="true">
+                    <MetroIcon name={routeIcon} className="h-6 w-6" />
+                  </span>
+                ) : null}
+                <h1 className="route-section__title">{title}</h1>
+              </div>
+              {description ? <p className="route-section__description">{description}</p> : null}
             </div>
-            {description ? <p className="route-section__description">{description}</p> : null}
-            <p className="route-section__tip">
+            <div className="flex-shrink-0 pt-2">
+              <ThemeSwitcher />
+            </div>
+            <p className="route-section__tip w-full sm:hidden">
               Tip: Use the Back button in the top-left corner to return to the tile home.
             </p>
           </header>
+          <p className="route-section__tip mt-2 hidden sm:block">
+            Tip: Use the Back button in the top-left corner to return to the tile home.
+          </p>
           <div className="route-section__content">{children}</div>
         </div>
       </div>

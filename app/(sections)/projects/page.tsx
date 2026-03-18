@@ -64,18 +64,6 @@ export default function ProjectsPage() {
             </div>
           </section>
 
-          <section id="talks" className="space-y-8 scroll-mt-20">
-            <div className="space-y-2">
-              <h2 className="text-xl font-semibold uppercase tracking-[0.25em] text-white/90" style={{ fontFamily: 'var(--route-heading-font-family)' }}>
-                Talks
-              </h2>
-              <div className="h-1 w-12 bg-(--metro-accent)" />
-            </div>
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-8 text-center backdrop-blur-sm">
-              <p className="text-white/60">No recent talks available yet. Stay tuned for future conference recordings!</p>
-            </div>
-          </section>
-
           <section id="sandbox" className="space-y-8 scroll-mt-20">
             <div className="space-y-2">
               <h2 className="text-xl font-semibold uppercase tracking-[0.25em] text-white/90" style={{ fontFamily: 'var(--route-heading-font-family)' }}>
@@ -93,6 +81,28 @@ export default function ProjectsPage() {
                   <h3 className="font-semibold text-white/90">{exp.title}</h3>
                   <p className="mt-2 text-sm text-white/60">{exp.desc}</p>
                   <div className="mt-4 text-[10px] font-bold uppercase tracking-widest text-(--metro-accent)">{exp.tech}</div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section id="video-editing" className="space-y-8 scroll-mt-20">
+            <div className="space-y-2">
+              <h2 className="text-xl font-semibold uppercase tracking-[0.25em] text-white/90" style={{ fontFamily: 'var(--route-heading-font-family)' }}>
+                Video Editing & Motion Graphics
+              </h2>
+              <div className="h-1 w-12 bg-(--metro-accent)" />
+            </div>
+            <p className="text-white/70">Motion graphics, reels, and professional video editing powered by DaVinci Resolve.</p>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+              {[
+                { title: "Social Media Reels", desc: "Engaging short-form content with dynamic motion graphics and fast-paced editing.", tech: "DaVinci Resolve" },
+                { title: "Motion Graphics", desc: "Custom animations, lower thirds, and visual effects for brand videos.", tech: "DaVinci Resolve + Fusion" }
+              ].map((video, idx) => (
+                <div key={idx} className="rounded-2xl border border-white/10 bg-white/5 p-6 hover:bg-white/10 transition-colors">
+                  <h3 className="font-semibold text-white/90">{video.title}</h3>
+                  <p className="mt-2 text-sm text-white/60">{video.desc}</p>
+                  <div className="mt-4 text-[10px] font-bold uppercase tracking-widest text-(--metro-accent)">{video.tech}</div>
                 </div>
               ))}
             </div>

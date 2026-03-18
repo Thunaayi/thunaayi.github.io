@@ -32,7 +32,7 @@ export default function BlogPage() {
       kicker="Editorial"
       title="Blog"
       description="Capture deep dives, release notes, and experiments. Pair insight with storytelling so every post moves a product conversation forward."
-      tileKey="talk"
+      tileKey="profile"
       aside={
         <div className="space-y-3 text-xs uppercase tracking-[0.35em] text-white/60">
           <p>Writing cadence — Quarterly</p>

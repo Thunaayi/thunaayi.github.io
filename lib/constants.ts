@@ -6,14 +6,13 @@ import { useMemo } from "react";
 import type { MetroTheme, TileKey } from "./theme";
 import { useTheme } from "@/app/components/ThemeProvider";
 
-export type TileSize = "medium" | "wide" | "large";
+export type TileSize = "medium" | "wide" | "large" | "hero";
 
 export type MetroIconName =
   | "case-study"
   | "profile"
   | "experience"
   | "stack"
-  | "talk"
   | "testimonials"
   | "contact"
   | "github"
@@ -23,7 +22,6 @@ export type MetroIconName =
   | "profile-pastel"
   | "experience-pastel"
   | "stack-pastel"
-  | "talk-pastel"
   | "testimonials-pastel"
   | "contact-pastel"
   | "github-pastel"
@@ -33,7 +31,6 @@ export type MetroIconName =
   | "profile-neon"
   | "experience-neon"
   | "stack-neon"
-  | "talk-neon"
   | "testimonials-neon"
   | "contact-neon"
   | "github-neon"
@@ -43,7 +40,6 @@ export type MetroIconName =
   | "profile-solar"
   | "experience-solar"
   | "stack-solar"
-  | "talk-solar"
   | "testimonials-solar"
   | "contact-solar"
   | "github-solar"
@@ -53,7 +49,6 @@ export type MetroIconName =
   | "profile-glass"
   | "experience-glass"
   | "stack-glass"
-  | "talk-glass"
   | "testimonials-glass"
   | "contact-glass"
   | "github-glass"
@@ -63,7 +58,6 @@ export type MetroIconName =
   | "profile-orchid"
   | "experience-orchid"
   | "stack-orchid"
-  | "talk-orchid"
   | "testimonials-orchid"
   | "contact-orchid"
   | "github-orchid"
@@ -73,22 +67,36 @@ export type MetroIconName =
   | "profile-retro"
   | "experience-retro"
   | "stack-retro"
-  | "talk-retro"
   | "testimonials-retro"
   | "contact-retro"
   | "github-retro"
   | "linkedin-retro"
   | "sandbox-retro"
+  | "instagram-retro"
   | "case-study-metro"
   | "profile-metro"
   | "experience-metro"
   | "stack-metro"
-  | "talk-metro"
   | "testimonials-metro"
   | "contact-metro"
   | "github-metro"
   | "linkedin-metro"
-  | "sandbox-metro";
+  | "sandbox-metro"
+  | "instagram-metro"
+  | "instagram"
+  | "instagram-pastel"
+  | "instagram-neon"
+  | "instagram-solar"
+  | "instagram-glass"
+  | "instagram-orchid"
+  | "video"
+  | "video-pastel"
+  | "video-neon"
+  | "video-solar"
+  | "video-glass"
+  | "video-orchid"
+  | "video-retro"
+  | "video-metro";
 
 export type TileDefinition = {
   key: TileKey;
@@ -158,14 +166,6 @@ export const HOME_TILES: TileDefinition[] = [
     order: 4,
   },
   {
-    key: "talk",
-    title: "Featured Talk",
-    description: "Watch recent talk",
-    size: "medium",
-    href: "/projects#talks",
-    order: 5,
-  },
-  {
     key: "testimonials",
     title: "Testimonials",
     description: "Client feedback",
@@ -197,24 +197,43 @@ export const HOME_TILES: TileDefinition[] = [
     href: "/projects#sandbox",
     order: 10,
   },
+  {
+    key: "instagram",
+    title: "Instagram",
+    description: "Follow me",
+    size: "medium",
+    href: "https://instagram.com/thunaayi",
+    order: 11,
+  },
+  {
+    key: "video",
+    title: "Video Editing",
+    description: "DaVinci Resolve & Motion",
+    size: "medium",
+    href: "/projects#video-editing",
+    order: 12,
+  },
 ];
 
 export const tileSizeClasses: Record<TileSize, string> = {
   medium: "col-span-1 row-span-1",
   wide: "col-span-2 row-span-1",
   large: "col-span-2 row-span-2",
+  hero: "col-span-2 md:col-span-4 row-span-2",
 };
 
 export const titleClasses: Record<TileSize, string> = {
   medium: "text-[7px] font-semibold uppercase tracking-[0.5em]",
   wide: "text-[7px] font-semibold uppercase tracking-[0.5em]",
   large: "text-[7px] font-semibold uppercase tracking-[0.5em]",
+  hero: "text-[10px] font-semibold uppercase tracking-[0.5em]",
 };
 
 export const descriptionClasses: Record<TileSize, string> = {
   medium: "text-[7px] font-medium uppercase tracking-[0.35em]",
   wide: "text-[7px] font-medium uppercase tracking-[0.35em]",
   large: "text-[7px] font-medium uppercase tracking-[0.35em]",
+  hero: "text-[8px] font-medium uppercase tracking-[0.35em]",
 };
 
 export const PROJECTS = projects;

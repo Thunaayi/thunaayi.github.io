@@ -7,12 +7,14 @@ export type TileKey =
   | "profile"
   | "experience"
   | "stack"
-  | "talk"
   | "testimonials"
   | "contact"
   | "github"
   | "linkedin"
-  | "sandbox";
+  | "sandbox"
+  | "instagram"
+  | "video";
+
 
 export type MetroTheme = {
   name: ThemeName;
