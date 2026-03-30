@@ -150,14 +150,6 @@ export const HOME_TILES: TileDefinition[] = [
     order: 2,
   },
   {
-    key: "experience",
-    title: "Experience",
-    description: "Roles & impact",
-    size: "wide",
-    href: "/resume",
-    order: 3,
-  },
-  {
     key: "stack",
     title: "Tech Stack",
     description: "Tools of choice",
@@ -188,6 +180,14 @@ export const HOME_TILES: TileDefinition[] = [
     size: "medium",
     href: "https://github.com/thunaayi",
     order: 8,
+  },
+  {
+    key: "linkedin",
+    title: "LinkedIn",
+    description: "Professional work",
+    size: "medium",
+    href: "https://www.linkedin.com/in/aimalasim/",
+    order: 9,
   },
   {
     key: "sandbox",

@@ -613,11 +613,6 @@ function TileSurface({
             {tile.description}
           </p>
         )}
-        {tile.href && (
-          <p className={cn("uppercase font-semibold tracking-[0.5em] opacity-80", textClass, dynamicDescClass)}>
-            {tile.href.replace(/^https?:\/\//, '').split('/')[0]}
-          </p>
-        )}
       </div>
     </>
   );
