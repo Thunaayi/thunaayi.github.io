@@ -1,0 +1,13 @@
+{
+  "name": "Aimal Asim",
+  "title": "Full Stack Developer",
+  "intro": "I build scalable full stack web applications using React, Next.js, Node.js and TypeScript. I focus on production-ready architecture, real-time systems, and clean code that ships.",
+  "location": "Remote",
+  "availability": "Open to opportunities",
+  "resumeUrl": "/resume.pdf",
+  "social": {
+    "github": "https://github.com/thunaayi",
+    "linkedin": "https://linkedin.com/in/thunaayi",
+    "email": "aimalasim92@gmail.com"
+  }
+}

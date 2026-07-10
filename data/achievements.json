@@ -1,0 +1,7 @@
+[
+  { "value": "100+", "label": "REST APIs Built", "accent": "blue" },
+  { "value": "500+", "label": "Concurrent Users Tested", "accent": "teal" },
+  { "value": "88ms", "label": "P95 Response Time", "accent": "green" },
+  { "value": "2", "label": "Production Applications", "accent": "amber" },
+  { "value": "Docker", "label": "Production Deployments", "accent": "purple" }
+]
