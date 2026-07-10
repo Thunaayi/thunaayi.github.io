@@ -1,7 +1,0 @@
-[
-  { "label": "Next.js", "description": "App Router, SSR, ISR" },
-  { "label": "AI Agents", "description": "LangChain, tool-use" },
-  { "label": "Docker", "description": "Compose, multi-stage" },
-  { "label": "System Design", "description": "Scalability, patterns" },
-  { "label": "Rust", "description": "Basics, ownership model" }
-]
