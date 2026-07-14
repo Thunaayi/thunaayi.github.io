@@ -40,7 +40,7 @@ export default function ProjectsPage() {
               <h2 className="text-xl font-semibold uppercase tracking-[0.25em] text-white/90" style={{ fontFamily: 'var(--route-heading-font-family)' }}>
                 Production Work
               </h2>
-              <div className="h-1 w-12 bg-(--metro-accent)" />
+              <div className="h-1 w-12 rounded-full bg-(--metro-accent)" />
             </div>
             <div className="route-grid route-grid--projects">
               {projects.map((project) => (
@@ -51,6 +51,9 @@ export default function ProjectsPage() {
                   <h2 className="route-card__title">{project.title}</h2>
                   <p className="route-card__summary">{project.summary}</p>
                   <p className="route-card__detail">{project.impact}</p>
+                  <p className="mt-2 text-[11px] uppercase tracking-[0.2em] text-white/40">
+                    {project.status}
+                  </p>
                   <div className="route-card__actions">
                     <button
                       onClick={() => setSelectedProject(project)}
@@ -69,7 +72,7 @@ export default function ProjectsPage() {
               <h2 className="text-xl font-semibold uppercase tracking-[0.25em] text-white/90" style={{ fontFamily: 'var(--route-heading-font-family)' }}>
                 Sandbox
               </h2>
-              <div className="h-1 w-12 bg-(--metro-accent)" />
+              <div className="h-1 w-12 rounded-full bg-(--metro-accent)" />
             </div>
             <p className="text-white/70">Experiments, quick prototypes, and side-quests I&apos;m currently working on.</p>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -91,7 +94,7 @@ export default function ProjectsPage() {
               <h2 className="text-xl font-semibold uppercase tracking-[0.25em] text-white/90" style={{ fontFamily: 'var(--route-heading-font-family)' }}>
                 Video Editing & Motion Graphics
               </h2>
-              <div className="h-1 w-12 bg-(--metro-accent)" />
+              <div className="h-1 w-12 rounded-full bg-(--metro-accent)" />
             </div>
             <p className="text-white/70">Motion graphics, reels, and professional video editing powered by DaVinci Resolve.</p>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">

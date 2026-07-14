@@ -132,6 +132,9 @@ export function useTiles(): TileData[] {
   return useMemo(() => resolveTiles(theme, HOME_TILES), [theme]);
 }
 
+// Down from 10 tiles to 8. Instagram and video editing are gone from the
+// main grid since they compete with "full stack developer" as your headline.
+// Testimonials is gone since we don't have a real, attributable quote yet.
 export const HOME_TILES: TileDefinition[] = [
   {
     key: "lms",
@@ -158,6 +161,10 @@ export const HOME_TILES: TileDefinition[] = [
     order: 3,
   },
   {
+    // Reusing the "testimonials" key on purpose. It already has a color and
+    // icon defined across all seven theme variants in theme.ts, so this
+    // renders correctly today. Swap in a real "resume" key later if you
+    // want a dedicated document icon, that's a theme.ts change, not urgent.
     key: "testimonials",
     title: "Resume",
     description: "Download PDF",
@@ -168,7 +175,7 @@ export const HOME_TILES: TileDefinition[] = [
   {
     key: "contact",
     title: "Contact",
-    description: "Let\u2019s collaborate",
+    description: "Let’s collaborate",
     size: "medium",
     href: "/contact",
     order: 5,

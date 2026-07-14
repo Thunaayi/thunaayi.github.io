@@ -25,7 +25,8 @@ export default function SkillsPage() {
         {Object.entries(skillGroups).map(([label, group]) => (
           <section key={label} className="route-card route-card--skills">
             <header className="route-card__header">
-              <h2 className="route-card__title">{label}</h2>
+              <h2 className="route-card__title text-base">{label}</h2>
+              <div className="h-0.5 w-8 rounded-full bg-(--metro-accent)/60" />
             </header>
             <ul className="route-chip-list">
               {group.map((skill) => (

@@ -37,8 +37,12 @@ export default function ContactPage() {
             <textarea name="message" rows={4} placeholder="Tell me about your product, team, or goals." required />
           </label>
           <div className="route-form__footer">
-            <button type="submit" className="route-card__cta route-card__cta--button">
-              Send message
+            <button type="submit" className="route-card__cta route-card__cta--button group">
+              <span>Send message</span>
+              <svg className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
             </button>
             <Link href="mailto:aimalasim92@gmail.com" className="route-card__link">
               Prefer email? aimalasim92@gmail.com

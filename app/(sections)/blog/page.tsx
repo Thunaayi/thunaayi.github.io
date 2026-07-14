@@ -42,7 +42,7 @@ export default function BlogPage() {
     >
       <div className="route-list route-list--blog">
         {featuredPosts.map((post) => (
-          <Link key={post.title} href={post.href} className="route-card route-card--blog">
+          <Link key={post.title} href={post.href} className="route-card route-card--blog group">
             <article>
               <header className="route-card__header">
                 <span className="route-card__meta">{post.published}</span>
