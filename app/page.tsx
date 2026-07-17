@@ -26,9 +26,9 @@ const PROJECTS: Project[] = [
     summary:
       "A full stack learning management system. Students take timed mock exams, review with interactive flashcards, and track performance across a hierarchical course structure.",
     tech: ["React", "Redux", "Node.js", "MongoDB", "Socket.IO"],
-    status: "built solo at BlackMode",
+    status: "built at BlackMode",
     impact:
-      "Deployed to production, owns the full deploy pipeline end to end.",
+      "In production. Owns the full deploy pipeline, no manual steps.",
     details: [
       {
         h: "what it does",
@@ -56,7 +56,7 @@ const PROJECTS: Project[] = [
     summary:
       "A medical exam prep platform for MRCEM candidates. High fidelity timed simulations, thousands of questions with rich clinical media, and activity logging built for exam integrity.",
     tech: ["React", "TypeScript", "Express", "MongoDB", "Docker"],
-    status: "freelance build for Umair Ali",
+    status: "built at BlackMode",
     impact:
       "Load tested to 80 concurrent virtual users: 190ms P95, 99.8% success across 10,764 requests. Estimated capacity: 200-400 real concurrent users.",
     stats: [

@@ -1,7 +1,0 @@
-export const skills = [
-  "Full-stack JavaScript",
-  "REST & GraphQL APIs",
-  "Authentication & Authorization",
-  "Real-time Collaboration",
-  "Cloud Deployments",
-];

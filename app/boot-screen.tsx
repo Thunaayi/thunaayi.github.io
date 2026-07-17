@@ -3,11 +3,10 @@
 import { useEffect, useState } from "react";
 
 const STEPS = [
-  { msg: "Mounting project database...", duration: 200 },
-  { msg: "Loading project data...", duration: 250 },
-  { msg: "Initializing input handlers...", duration: 200 },
-  { msg: "Resolving target section...", duration: 300 },
-  { msg: "Starting user interface...", duration: 200 },
+  { msg: "Resolving hash target...", duration: 200 },
+  { msg: "Mounting interface...", duration: 250 },
+  { msg: "Binding input handlers...", duration: 200 },
+  { msg: "Starting session...", duration: 300 },
   { msg: "Reached target Portfolio Online", final: true },
 ];
 
