@@ -408,6 +408,7 @@ export default function Page() {
                     <ul>
                       <li>React &amp; TypeScript</li>
                       <li>Redux &amp; state mgmt</li>
+                      <li>React Query</li>
                       <li>Tailwind CSS</li>
                       <li>Framer Motion</li>
                       <li>Responsive design</li>
@@ -418,6 +419,7 @@ export default function Page() {
                     <ul>
                       <li>Node.js &amp; Express</li>
                       <li>MongoDB &amp; Mongoose</li>
+                      <li>PostgreSQL &amp; SQL</li>
                       <li>Socket.IO &amp; real-time</li>
                       <li>REST API design</li>
                       <li>JWT authentication</li>
@@ -430,9 +432,11 @@ export default function Page() {
                     <ul>
                       <li>Docker</li>
                       <li>Git &amp; version control</li>
-                      <li>CapRover / Coolify</li>
+                      <li>Linode VPS · CapRover / Coolify</li>
+                      <li>CI/CD (GitHub Actions)</li>
                       <li>Security hardening</li>
-                      <li>Performance testing</li>
+                      <li>Load testing (k6)</li>
+                      <li>Email server config</li>
                     </ul>
                   </div>
                 </div>
