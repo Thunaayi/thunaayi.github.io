@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>aimal@portfolio</title>
+<meta name="description" content="Aimal Asim, full stack developer. Backend, real-time systems, MERN stack.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app">
+
+  <header class="topbar">
+    <span class="topbar__user">aimal@portfolio</span>
+    <span class="topbar__status"><span class="dot"></span> open to opportunities</span>
+    <a class="topbar__resume" href="resume.pdf" download>[ download resume ]</a>
+  </header>
+
+  <div class="frame">
+
+    <nav class="sidebar" aria-label="Sections">
+      <div class="pane-title">[ menu ]</div>
+      <button class="nav-item" data-section="home" data-num="1">
+        <span class="nav-item__key">1</span> home
+      </button>
+      <button class="nav-item" data-section="projects" data-num="2">
+        <span class="nav-item__key">2</span> projects
+      </button>
+      <button class="nav-item" data-section="skills" data-num="3">
+        <span class="nav-item__key">3</span> skills
+      </button>
+      <button class="nav-item" data-section="resume" data-num="4">
+        <span class="nav-item__key">4</span> resume
+      </button>
+      <button class="nav-item" data-section="contact" data-num="5">
+        <span class="nav-item__key">5</span> contact
+      </button>
+    </nav>
+
+    <main class="content">
+
+      <!-- HOME -->
+      <section class="panel" data-panel="home">
+        <div class="pane-title">[ 1:home ]</div>
+        <div class="neofetch">
+          <pre class="neofetch__mark" aria-hidden="true">   ▄▄▄▄▄▄▄
+  █ AA  █
+  █▄▄▄▄▄█
+  ▄▄▄▄▄▄▄▄▄</pre>
+          <dl class="neofetch__stats">
+            <div><dt>name</dt><dd>Aimal Asim</dd></div>
+            <div><dt>role</dt><dd>Full Stack Developer</dd></div>
+            <div><dt>stack</dt><dd>Node.js · Express · MongoDB · React</dd></div>
+            <div><dt>host</dt><dd>BlackMode + freelance</dd></div>
+            <div><dt>locale</dt><dd>Karachi, Pakistan</dd></div>
+            <div><dt>focus</dt><dd>backend, real-time systems</dd></div>
+            <div><dt>uptime</dt><dd>1+ years shipping production code</dd></div>
+          </dl>
+        </div>
+        <p class="home__pitch">I build learning platforms and real-time systems. No computer science degree, high school then a development bootcamp, then straight into building things people actually use.</p>
+      </section>
+
+      <!-- PROJECTS -->
+      <section class="panel" data-panel="projects" hidden>
+        <div class="pane-title">[ 2:projects ]</div>
+        <div class="split">
+          <div class="list" id="projectList" role="listbox" aria-label="Projects">
+            <!-- populated by JS -->
+          </div>
+          <div class="detail" id="projectDetail">
+            <!-- populated by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section class="panel" data-panel="skills" hidden>
+        <div class="pane-title">[ 3:skills ]</div>
+        <div class="skills-grid">
+          <div class="skills-col">
+            <div class="skills-col__label">frontend</div>
+            <ul>
+              <li>React &amp; TypeScript</li>
+              <li>Redux &amp; state mgmt</li>
+              <li>Tailwind CSS</li>
+              <li>Framer Motion</li>
+              <li>Responsive design</li>
+            </ul>
+          </div>
+          <div class="skills-col">
+            <div class="skills-col__label">backend</div>
+            <ul>
+              <li>Node.js &amp; Express</li>
+              <li>MongoDB &amp; Mongoose</li>
+              <li>Socket.IO &amp; real-time</li>
+              <li>REST API design</li>
+              <li>JWT authentication</li>
+            </ul>
+          </div>
+          <div class="skills-col">
+            <div class="skills-col__label">infra &amp; tools</div>
+            <ul>
+              <li>Docker</li>
+              <li>Git &amp; version control</li>
+              <li>CapRover / Coolify</li>
+              <li>Security hardening</li>
+              <li>Performance testing</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESUME -->
+      <section class="panel" data-panel="resume" hidden>
+        <div class="pane-title">[ 4:resume ]</div>
+        <a class="btn" href="resume.pdf" download>[ download PDF ]</a>
+        <p class="resume__note">Add the real file at <code>resume.pdf</code> next to this page before this link works.</p>
+
+        <div class="resume__block">
+          <div class="skills-col__label">Full Stack Developer — BlackMode</div>
+          <ul class="resume__list">
+            <li>Solely designed and built ExamExpert, a full stack LMS covering course structure, question banks, real-time timed exams, and flashcard review</li>
+            <li>Implemented JWT based authentication and role based access control for students, teachers, and administrators</li>
+            <li>Set up continuous deployment through Coolify, every push to main ships to production automatically</li>
+            <li>Load tested the platform locally with k6. <span class="placeholder">[ADD YOUR REAL NUMBERS: concurrent users, requests per second, average response time]</span></li>
+          </ul>
+        </div>
+
+        <div class="resume__block">
+          <div class="skills-col__label">Freelance Full Stack Developer</div>
+          <ul class="resume__list">
+            <li>Built AceMrcem, a medical exam prep platform, for client Umair Ali</li>
+            <li>Load tested the production build: 80 concurrent virtual users, 190ms P95 response time, 99.8% success rate across 10,764 requests</li>
+            <li>Estimated production capacity of 200 to 400 real concurrent users on current infrastructure</li>
+            <li>Integrated PayFast for client payment processing</li>
+          </ul>
+        </div>
+
+        <div class="resume__block">
+          <div class="skills-col__label">Education</div>
+          <p>PSDC development bootcamp. High school diploma.</p>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="panel" data-panel="contact" hidden>
+        <div class="pane-title">[ 5:contact ]</div>
+        <p class="contact__intro">Open for full time roles, freelance work, and interesting problems.</p>
+        <form class="tform" action="https://formspree.io/f/xpqjzdqz" method="POST">
+          <label>
+            <span>name</span>
+            <input type="text" name="name" required>
+          </label>
+          <label>
+            <span>email</span>
+            <input type="email" name="email" required>
+          </label>
+          <label>
+            <span>message</span>
+            <textarea name="message" rows="4" required></textarea>
+          </label>
+          <button type="submit" class="btn">[ send message ]</button>
+        </form>
+        <div class="contact__links">
+          <a href="mailto:aimalasim92@gmail.com">email</a>
+          <a href="https://github.com/thunaayi" target="_blank" rel="noopener">github</a>
+          <a href="https://www.linkedin.com/in/aimalasim/" target="_blank" rel="noopener">linkedin</a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="statusbar" id="statusbar">
+    <span id="statusHint">↑↓ or j/k: move · 1-5: jump to section · enter: open</span>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
