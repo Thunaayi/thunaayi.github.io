@@ -507,6 +507,11 @@ export default function Page() {
                       with Google OAuth, brute-force protection, and PayFast
                       payment integration
                     </li>
+                    <li>
+                      Configured SMTP email delivery and DNS records directly,
+                      no third-party provider, per BlackMode's infrastructure
+                      preference
+                    </li>
                   </ul>
                 </div>
 
@@ -516,14 +521,10 @@ export default function Page() {
                   </div>
                   <ul className="resume__list">
                     <li>
-                      Built the backend for a 31-model, 180-endpoint platform,
-                      with CI/CD through GitHub Actions after local builds
-                      outgrew the production VPS's available memory
-                    </li>
-                    <li>
-                      Load tested the production build: 80 concurrent virtual
-                      users, 190ms P95 response time, 99.8% success rate across
-                      10,764 requests
+                      Built the backend for AceMrcem, a 31-model, 180-endpoint
+                      medical exam prep platform, for client Umair Ali, with
+                      CI/CD through GitHub Actions after local builds outgrew
+                      the production VPS's available memory
                     </li>
                     <li>
                       Diagnosed and fixed a false-positive DDoS rule that was
@@ -531,8 +532,10 @@ export default function Page() {
                       15-point security test suite, 15 of 15 checks passed
                     </li>
                     <li>
-                      Estimated production capacity of 200 to 400 real
-                      concurrent users on current infrastructure
+                      Load tested the production build: 80 concurrent virtual
+                      users, 190ms P95 response time, 99.8% success rate across
+                      10,764 requests, estimated capacity of 200 to 400 real
+                      concurrent users
                     </li>
                     <li>
                       Integrated PayFast for client payment processing
