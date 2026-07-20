@@ -26,9 +26,9 @@ const PROJECTS: Project[] = [
     summary:
       "A full stack learning management system with student, teacher, and admin dashboards. Real-time test sessions, subscription-gated question banks, and support ticketing, rebuilt to handle 500 concurrent users.",
     tech: ["React", "Redux", "Node.js", "MongoDB", "Socket.IO"],
-    status: "feature-complete, load tested, launch on hold",
+    status: "was live in production, taken down to reserve VPS resources for AceMrcem",
     impact:
-      "Backend and full-stack integration built from the ground up: 38 models, 340 endpoints, Socket.IO, JWT auth. Load tested to 500 concurrent users at 88ms P95, zero failures. Production-configured; launch is currently deprioritized in favor of AceMrcem, not a technical blocker.",
+      "Backend and full-stack integration built from the ground up: 38 models, 340 endpoints, Socket.IO, JWT auth. Load tested to 500 concurrent users at 88ms P95, zero failures. Both platforms share a single resource-constrained VPS; ExamExpert was taken offline to prioritize AceMrcem's current needs, a resourcing decision, not a failure of the system.",
     stats: [
       { label: "P95 response", value: "88ms", pct: 95 },
       { label: "concurrent users", value: "500", pct: 100 },
