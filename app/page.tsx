@@ -379,15 +379,15 @@ export default function Page() {
                 <dl className="home__highlights">
                   <div>
                     <dt>2</dt>
-                    <dd>production platforms shipped</dd>
+                    <dd>platforms shipped</dd>
                   </div>
                   <div>
-                    <dt>180+</dt>
-                    <dd>API endpoints</dd>
+                    <dt>520+</dt>
+                    <dd>API endpoints combined</dd>
                   </div>
                   <div>
-                    <dt>99.8%</dt>
-                    <dd>success rate under load</dd>
+                    <dt>0</dt>
+                    <dd>failures at 500 concurrent users</dd>
                   </div>
                 </dl>
                 <div className="home__cta-row">
