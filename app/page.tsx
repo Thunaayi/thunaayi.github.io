@@ -24,27 +24,44 @@ const PROJECTS: Project[] = [
     title: "ExamExpert",
     tag: "backend-led",
     summary:
-      "A full stack learning management system. Students take timed mock exams, review with interactive flashcards, and track performance across a hierarchical course structure.",
+      "A full stack learning management system with student, teacher, and admin dashboards. Real-time test sessions, subscription-gated question banks, and support ticketing, rebuilt to handle 500 concurrent users.",
     tech: ["React", "Redux", "Node.js", "MongoDB", "Socket.IO"],
-    status: "built at BlackMode",
+    status: "feature-complete, load tested, launch on hold",
     impact:
-      "In production. Owns the full deploy pipeline, no manual steps.",
+      "Backend and full-stack integration built from the ground up: 38 models, 340 endpoints, Socket.IO, JWT auth. Load tested to 500 concurrent users at 88ms P95, zero failures. Production-configured; launch is currently deprioritized in favor of AceMrcem, not a technical blocker.",
+    stats: [
+      { label: "P95 response", value: "88ms", pct: 95 },
+      { label: "concurrent users", value: "500", pct: 100 },
+      { label: "avg response", value: "16ms", pct: 90 },
+    ],
     details: [
       {
         h: "what it does",
         items: [
-          "Course content organized as Courses → Subjects → Books → Chapters → Topics",
-          "Question bank with multiple question types and per-question statistics",
-          "Real-time test sessions over Socket.IO, tracking response time and progress live",
-          "Flashcard system for spaced revision",
-          "Role based access for students, teachers, and administrators",
+          "Three role-based dashboards, student, teacher, admin, each with a genuinely separate feature set, not just permission flags on one shared view",
+          "Full content hierarchy authored through a rich text editor: Course → Subject → Chapter → Topic → SubTopic",
+          "Quiz and test engine: mock tests, custom tests, timers, question flagging, suspend and resume, subscription-gated question banks",
+          "Real-time notifications and live support ticketing over Socket.IO",
+          "Study tools: flashcards, notebooks, short notes",
+          "Admin-side analytics: sales, enrollment, activity logs with GeoIP and device detection",
         ],
       },
       {
         h: "infrastructure",
         items: [
-          "Auto-deploy on push to main via Coolify",
-          "Rate limiting and request sanitization on all public endpoints",
+          "38 MongoDB models, 340 mounted API endpoints across 44 route files",
+          "JWT auth in httpOnly cookies with Bearer fallback, Google OAuth, brute-force lockout after 5 failed attempts",
+          "Three-tier rate limiting, Helmet, mongo-sanitize, centralized validation across 7 domain-specific validators",
+          "Docker multi-stage build, deployed via CapRover and Coolify",
+        ],
+      },
+      {
+        h: "performance",
+        items: [
+          "Found a real production bottleneck: the system failed under roughly 100 concurrent users, with P95 latency near 60 seconds",
+          "Root cause was MongoDB connection pool limits, not application logic",
+          "Refactored auth middleware and request handling, added caching, tuned the connection pool for the VPS's actual memory ceiling",
+          "Verified with k6: 500 concurrent users, zero failures, P95 down to 88ms, average response around 16ms",
         ],
       },
     ],
@@ -462,24 +479,23 @@ export default function Page() {
                   </div>
                   <ul className="resume__list">
                     <li>
-                      Solely designed and built ExamExpert, a full stack LMS
-                      covering course structure, question banks, real-time timed
-                      exams, and flashcard review
+                      Built the backend and full-stack integration for
+                      ExamExpert from the ground up, joining an existing
+                      frontend prototype and shipping 38 MongoDB models across
+                      340 API endpoints
                     </li>
                     <li>
-                      Implemented JWT based authentication and role based access
-                      control for students, teachers, and administrators
+                      Diagnosed and fixed a production bottleneck under load,
+                      refactored auth middleware and database connection
+                      handling to take capacity from roughly 100 concurrent
+                      users failing at 60s P95 to 500 concurrent users at 88ms
+                      P95 with zero failures, verified with k6
                     </li>
                     <li>
-                      Set up continuous deployment through Coolify, every push
-                      to main ships to production automatically
-                    </li>
-                    <li>
-                      Load tested the platform locally with k6.{" "}
-                      <span className="placeholder">
-                        [ADD YOUR REAL NUMBERS: concurrent users, requests per
-                        second, average response time]
-                      </span>
+                      Implemented real-time features over Socket.IO, live
+                      notifications and support ticketing, alongside JWT auth
+                      with Google OAuth, brute-force protection, and PayFast
+                      payment integration
                     </li>
                   </ul>
                 </div>
