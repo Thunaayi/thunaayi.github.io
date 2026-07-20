@@ -88,11 +88,21 @@ const PROJECTS: Project[] = [
           "Timed exam simulations built to mirror the real MRCEM exam experience",
           "Dynamic question bank with explanations, hints, and rich medical imagery",
           "Performance analytics with per-question time breakdowns and historical tracking",
+          "Admin dashboard with student management, enrollment tracking, sales analytics, and activity monitoring with GeoIP and device detection",
           "IP based activity logging for exam integrity monitoring",
         ],
       },
       {
-        h: "load testing",
+        h: "infrastructure",
+        items: [
+          "31 MongoDB models, 180 mounted API endpoints",
+          "8-tier rate limiting, XSS and NoSQL injection prevention, CSRF protection",
+          "File upload validation at the byte level, not by trusting file extensions",
+          "CI/CD via GitHub Actions, build moved off the production VPS after memory constraints made local builds fail",
+        ],
+      },
+      {
+        h: "performance",
         items: [
           "Found and fixed a false-positive DDoS rule that was rate-limiting normal traffic under load",
           "15-point security test suite: 15 of 15 checks passed",
