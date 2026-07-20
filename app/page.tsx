@@ -192,7 +192,7 @@ export default function Page() {
         return;
       }
 
-      if (activeSection === "projects") {
+      if (activeSection === "projects" && !expanded) {
         if (e.key === "j" || e.key === "ArrowDown") {
           setActiveProjectIndex((i) => (i + 1) % PROJECTS.length);
           setExpanded(false);
@@ -212,7 +212,7 @@ export default function Page() {
 
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [ready, activeSection]);
+  }, [ready, activeSection, expanded]);
 
   function setSection(s: Section) {
     setActiveSection(s);
