@@ -557,43 +557,52 @@ export default function Page() {
                   Open for full time roles, freelance work, and interesting
                   problems.
                 </p>
-                <form
-                  className="tform"
-                  action="https://formspree.io/f/xpqjzdqz"
-                  method="POST"
-                >
-                  <label>
-                    <span>name</span>
-                    <input type="text" name="name" required />
-                  </label>
-                  <label>
-                    <span>email</span>
-                    <input type="email" name="email" required />
-                  </label>
-                  <label>
-                    <span>message</span>
-                    <textarea name="message" rows={4} required />
-                  </label>
-                  <button type="submit" className="btn">
-                    [ send message ]
-                  </button>
-                </form>
-                <div className="contact__links">
-                  <a href="mailto:aimalasim92@gmail.com">email</a>
-                  <a
-                    href="https://github.com/thunaayi"
-                    target="_blank"
-                    rel="noopener"
+                <div className="contact__split">
+                  <form
+                    className="tform"
+                    action="https://formspree.io/f/xpqjzdqz"
+                    method="POST"
                   >
-                    github
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/in/aimalasim/"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    linkedin
-                  </a>
+                    <label>
+                      <span>name</span>
+                      <input type="text" name="name" required />
+                    </label>
+                    <label>
+                      <span>email</span>
+                      <input type="email" name="email" required />
+                    </label>
+                    <label>
+                      <span>message</span>
+                      <textarea name="message" rows={4} required />
+                    </label>
+                    <button type="submit" className="btn">
+                      [ send message ]
+                    </button>
+                    <p className="contact__response">
+                      usually replies within a day
+                    </p>
+                  </form>
+                  <div className="contact__sidebar">
+                    <span className="contact__sidebar-label">direct</span>
+                    <a href="mailto:aimalasim92@gmail.com">email</a>
+                    <a
+                      href="https://github.com/thunaayi"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      github
+                    </a>
+                    <a
+                      href="https://www.linkedin.com/in/aimalasim/"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      linkedin
+                    </a>
+                    <span className="contact__meta">
+                      Karachi, Pakistan<br />(GMT+5)
+                    </span>
+                  </div>
                 </div>
               </section>
             </main>
