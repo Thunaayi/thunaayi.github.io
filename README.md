@@ -1,7 +1,9 @@
 # Portfolio
 
-Personal portfolio site built as a terminal-UI (TUI), styled after real tools
-like htop, lazygit, and k9s rather than a terminal-emulator costume.
+Live: https://thunaayi.github.io/
+
+A terminal-UI style personal site, modeled on real tools like htop and
+lazygit rather than a generic dark-mode template.
 
 ## What's inside
 
