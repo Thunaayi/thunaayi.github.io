@@ -478,10 +478,6 @@ export default function Page() {
                 <a className="btn" href="/resume.pdf" download>
                   [ download PDF ]
                 </a>
-                <p className="resume__note">
-                  Add the real file at <code>resume.pdf</code> in the
-                  public/ folder before this link works.
-                </p>
 
                 <div className="resume__block">
                   <div className="skills-col__label">
