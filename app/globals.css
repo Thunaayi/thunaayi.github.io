@@ -480,7 +480,7 @@ ul { list-style: none; }
 }
 .tform { display: flex; flex-direction: column; gap: 14px; }
 .tform label { display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: var(--yellow); }
-.tform input, .tform textarea { padding: 8px 10px; resize: vertical; }
+.tform input, .tform textarea { padding: 8px 10px; resize: none; }
 .tform input:focus, .tform textarea:focus { border-color: var(--orange); outline: none; }
 .contact__sidebar {
   display: flex;
