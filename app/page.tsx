@@ -573,7 +573,7 @@ export default function Page() {
                     </label>
                     <label>
                       <span>message</span>
-                      <textarea name="message" rows={4} required />
+                      <textarea name="message" rows={4} maxLength={5000} required />
                     </label>
                     <button type="submit" className="btn">
                       [ send message ]
