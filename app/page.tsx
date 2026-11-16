@@ -439,6 +439,17 @@ export default function Page() {
                   <a tabIndex={-1} className="home__cta" href="/resume.pdf" download>
                     [ download resume → ]
                   </a>
+                  {WHATSAPP_NUMBER && (
+                    <a
+                      tabIndex={-1}
+                      className="home__cta"
+                      href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      [ whatsapp me → ]
+                    </a>
+                  )}
                 </div>
               </section>
 
