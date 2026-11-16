@@ -3,8 +3,38 @@
 import { useCallback, useEffect, useState } from "react";
 import { BootScreen } from "@/app/boot-screen";
 
-const SECTIONS = ["home", "projects", "skills", "resume", "contact"] as const;
+const SECTIONS = [
+  "home",
+  "services",
+  "projects",
+  "skills",
+  "resume",
+  "contact",
+] as const;
 type Section = (typeof SECTIONS)[number];
+
+// Add the number with country code, digits only (example: 923001234567).
+// Leave empty and the WhatsApp link stays hidden.
+const WHATSAPP_NUMBER = "";
+
+const SERVICES = [
+  {
+    name: "Websites and web apps",
+    text: "Your own site, or a system your customers log into.",
+  },
+  {
+    name: "Online payments",
+    text: "Take payments on your site through PayFast.",
+  },
+  {
+    name: "Hosting and setup",
+    text: "Get it live on your own domain, with email that sends from your address, and keep it running.",
+  },
+  {
+    name: "Speed and fixes",
+    text: "Site slow, or breaks when a lot of people visit? I find out why and fix it.",
+  },
+];
 
 type Project = {
   id: string;
@@ -113,16 +143,18 @@ const PROJECTS: Project[] = [
 ];
 
 const HINTS: Record<Section, string> = {
-  home: "1-5 or click sidebar: switch section",
+  home: "1-6 or click sidebar: switch section",
+  services: "1-6: jump · click contact to tell me what you need",
   projects:
-    "↑↓ or j/k: select project · enter: toggle full case study · 1-5: jump",
-  skills: "1-5: jump to section",
-  resume: "1-5: jump · click download to grab the PDF",
-  contact: "1-5: jump · tab through the form fields to fill it out",
+    "↑↓ or j/k: select project · enter: toggle full case study · 1-6: jump",
+  skills: "1-6: jump to section",
+  resume: "1-6: jump · click download to grab the PDF",
+  contact: "1-6: jump · tab through the form fields to fill it out",
 };
 
 const SECTION_NAMES: Record<Section, string> = {
   home: "home",
+  services: "services",
   projects: "projects",
   skills: "skills",
   resume: "resume",
@@ -185,7 +217,7 @@ export default function Page() {
       if (tag === "INPUT" || tag === "TEXTAREA") return;
 
       const num = Number(e.key);
-      if (num >= 1 && num <= 5) {
+      if (num >= 1 && num <= SECTIONS.length) {
         setActiveSection(SECTIONS[num - 1]);
         setExpanded(false);
         e.preventDefault();
@@ -334,6 +366,11 @@ export default function Page() {
                 hidden={activeSection !== "home"}
               >
                 <div className="pane-title">[ 1:home ]</div>
+                <p className="home__lead">
+                  I build websites and web apps for businesses. I also set up
+                  the hosting, payments and email behind them, and fix them
+                  when they are slow or broken.
+                </p>
                 <div className="neofetch">
                   <pre className="neofetch__mark" aria-hidden="true">
                     {`┌────────┐
@@ -405,12 +442,41 @@ export default function Page() {
                 </div>
               </section>
 
+              {/* SERVICES */}
+              <section
+                className="panel"
+                hidden={activeSection !== "services"}
+              >
+                <div className="pane-title">[ 2:services ]</div>
+                <p className="services__top">
+                  Available for full time roles and select freelance projects.
+                </p>
+                <ul className="services__list">
+                  {SERVICES.map((svc) => (
+                    <li key={svc.name}>
+                      <span className="services__name">{svc.name}</span>
+                      <span className="services__text">{svc.text}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="home__cta-row">
+                  <a
+                    tabIndex={-1}
+                    className="home__cta"
+                    href="#contact"
+                    onClick={(e) => { e.preventDefault(); setSection("contact"); }}
+                  >
+                    [ tell me what you need → ]
+                  </a>
+                </div>
+              </section>
+
               {/* PROJECTS */}
               <section
                 className="panel"
                 hidden={activeSection !== "projects"}
               >
-                <div className="pane-title">[ 2:projects ]</div>
+                <div className="pane-title">[ 3:projects ]</div>
                 <div className="split">
                   <div
                     className="list"
@@ -428,7 +494,7 @@ export default function Page() {
                 className="panel"
                 hidden={activeSection !== "skills"}
               >
-                <div className="pane-title">[ 3:skills ]</div>
+                <div className="pane-title">[ 4:skills ]</div>
                 <div className="skills-grid">
                   <div className="skills-col">
                     <div className="skills-col__label">frontend</div>
@@ -474,7 +540,7 @@ export default function Page() {
                 className="panel"
                 hidden={activeSection !== "resume"}
               >
-                <div className="pane-title">[ 4:resume ]</div>
+                <div className="pane-title">[ 5:resume ]</div>
                 <a className="btn" href="/resume.pdf" download>
                   [ download PDF ]
                 </a>
@@ -552,7 +618,7 @@ export default function Page() {
                 className="panel"
                 hidden={activeSection !== "contact"}
               >
-                <div className="pane-title">[ 5:contact ]</div>
+                <div className="pane-title">[ 6:contact ]</div>
                 <p className="contact__intro">
                   Open for full time roles, freelance work, and interesting
                   problems.
@@ -585,6 +651,15 @@ export default function Page() {
                   <div className="contact__sidebar">
                     <span className="contact__sidebar-label">direct</span>
                     <a href="mailto:aimalasim92@gmail.com">email</a>
+                    {WHATSAPP_NUMBER && (
+                      <a
+                        href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                        target="_blank"
+                        rel="noopener"
+                      >
+                        whatsapp
+                      </a>
+                    )}
                     <a
                       href="https://github.com/thunaayi"
                       target="_blank"
