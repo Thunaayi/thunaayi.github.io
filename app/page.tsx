@@ -15,7 +15,7 @@ type Section = (typeof SECTIONS)[number];
 
 // Add the number with country code, digits only (example: 923001234567).
 // Leave empty and the WhatsApp link stays hidden.
-const WHATSAPP_NUMBER = "";
+const WHATSAPP_NUMBER = "923275360250";
 
 const SERVICES = [
   {
@@ -392,7 +392,7 @@ export default function Page() {
                     </div>
                     <div>
                       <dt>host</dt>
-                      <dd>BlackMode + freelance</dd>
+                      <dd>BlackMode</dd>
                     </div>
                     <div>
                       <dt>locale</dt>
@@ -547,7 +547,7 @@ export default function Page() {
 
                 <div className="resume__block">
                   <div className="skills-col__label">
-                    Full Stack Developer — BlackMode
+                    Full Stack Developer, BlackMode: ExamExpert
                   </div>
                   <ul className="resume__list">
                     <li>
@@ -579,12 +579,12 @@ export default function Page() {
 
                 <div className="resume__block">
                   <div className="skills-col__label">
-                    Freelance Full Stack Developer
+                    Full Stack Developer, BlackMode: AceMrcem
                   </div>
                   <ul className="resume__list">
                     <li>
                       Built the backend for AceMrcem, a 31-model, 180-endpoint
-                      medical exam prep platform, for client Umair Ali, with
+                      medical exam prep platform, with
                       CI/CD through GitHub Actions after local builds outgrew
                       the production VPS's available memory
                     </li>
@@ -600,7 +600,7 @@ export default function Page() {
                       concurrent users
                     </li>
                     <li>
-                      Integrated PayFast for client payment processing
+                      Integrated PayFast for payment processing
                     </li>
                   </ul>
                 </div>
