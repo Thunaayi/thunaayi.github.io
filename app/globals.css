@@ -227,6 +227,13 @@ ul { list-style: none; }
   flex-shrink: 0;
 }
 .neofetch__stats dd { color: var(--fg); }
+.home__lead {
+  font-size: 20px;
+  line-height: 1.45;
+  color: var(--fg);
+  max-width: 640px;
+  padding: 12px 4px 4px;
+}
 .home__pitch {
   max-width: 560px;
   color: var(--fg-dim);
@@ -270,6 +277,19 @@ ul { list-style: none; }
   border-color: var(--fg);
   text-decoration: none;
 }
+
+/* ---------- SERVICES ---------- */
+.services__top { color: var(--yellow); padding: 8px 4px 0; }
+.services__list { margin-top: 14px; max-width: 640px; }
+.services__list li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 4px;
+  border-bottom: 1px dashed var(--border);
+}
+.services__name { color: var(--orange); font-weight: 600; }
+.services__text { color: var(--fg-dim); font-size: 13.5px; }
 
 /* ---------- PROJECTS ---------- */
 .split {
@@ -602,4 +622,5 @@ ul { list-style: none; }
   .contact__split { grid-template-columns: 1fr; }
   .skills-grid { grid-template-columns: 1fr; }
   .neofetch { gap: 16px; }
+  .home__lead { font-size: 17px; }
 }
